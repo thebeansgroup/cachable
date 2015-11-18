@@ -1,0 +1,2 @@
+# cachable
+Caching for ActiveResource
