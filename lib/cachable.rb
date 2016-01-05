@@ -1,5 +1,4 @@
 require 'cachable/version'
-require 'cachable/railtie'
 require 'cachable/key'
 
 module Cachable
