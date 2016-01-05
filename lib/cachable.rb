@@ -13,7 +13,10 @@ module Cachable
 
       cache_key = Key.new(self, attributes)
 
-      Rails.cache.delete(cache_key) if Rails.cache.fetch(cache_key) == []
+      cached_data = Rails.cache.fetch(cache_key)
+      if cached_data.is_a?(ActiveResource::Collection) && cached_data.elements.empty?
+        Rails.cache.delete(cache_key)
+      end
 
       Rails.cache.fetch(cache_key) { super(*attributes) }
     end
